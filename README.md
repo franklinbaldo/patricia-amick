@@ -1,20 +1,29 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Patricia & Amick
 
-# Run and deploy your AI Studio app
+Un regalo de Patricia para Amick · una página web romántica que celebra el mes en que se encontraron bajo la Vía Láctea de San Pedro de Atacama.
 
-This contains everything you need to run your app locally.
+Sitio en vivo: https://franklinbaldo.github.io/patricia-amick/
 
-View your app in AI Studio: https://ai.studio/apps/5f41993a-70ee-4c52-9507-9ddeccb10efd
+## Desarrollo
 
-## Run Locally
+```bash
+npm install
+npm run dev
+```
 
-**Prerequisites:**  Node.js
+El servidor `server.ts` solo se usa en desarrollo (provee `/api/horoscope` vía Gemini si `GEMINI_API_KEY` está configurada). En producción el sitio es 100% estático y usa `public/horoscope.json`.
 
+## Build estático
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+npx vite build
+```
+
+El resultado va a `dist/` y se publica automáticamente en GitHub Pages vía `.github/workflows/pages.yml` al hacer push a `main`.
+
+## Assets
+
+- `public/photos/01..04-*.jpg` — fotos del casal
+- `public/video/nuestra-noche.mp4` — fragmento de la noche
+- `public/audio/clair-de-lune.ogg` — Clair de Lune de Debussy (dominio público, Wikimedia Commons)
+- `public/horoscope.json` — la carta romántica estática
