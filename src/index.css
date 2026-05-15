@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Georgia", "Playfair Display", ui-serif, Georgia, serif;
+  
+  --color-gold: #d4af37;
+  --color-star-navy: #050b1a;
+  --color-star-blue: #0a1631;
+}
+
+body {
+  @apply bg-star-navy text-[#f8f9fa] antialiased font-serif;
+}
+
+.gold-text {
+  @apply text-gold;
+}
+
+.glass-panel {
+  @apply bg-white/5 backdrop-blur-lg border border-white/10 rounded-[20px];
+}
+
+.polaroid {
+  @apply bg-white p-[10px] pb-[30px] shadow-[0_10px_20px_rgba(0,0,0,0.5)] rounded-[2px];
+}
+
+.polaroid-inner {
+  @apply bg-[#e2e8f0] w-full aspect-square flex items-center justify-center text-[#64748b] text-[12px] border border-[#cbd5e1] overflow-hidden;
+}
+
+.music-bar {
+  @apply w-[3px] bg-gold rounded-[3px] mx-[1px];
+}
+
+.bg-sky-gradient {
+  background: radial-gradient(circle at 50% 50%, var(--color-star-blue) 0%, var(--color-star-navy) 100%);
+}

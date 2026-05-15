@@ -1,0 +1,8 @@
+{
+  "name": "Patricia & Amick: Onde as Estrelas se Cruzam",
+  "description": "Un regalo de Patricia para Amick: mapa estelar romántico del día en que se conocieron en San Pedro de Atacama.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
