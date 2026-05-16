@@ -30,5 +30,5 @@ El resultado va a `dist/` y se publica automáticamente en GitHub Pages vía `.g
 
 - `public/photos/01..04-*.jpg` — fotos del casal
 - `public/video/nuestra-noche.mp4` — fragmento de la noche
-- `public/audio/clair-de-lune.ogg` — Clair de Lune de Debussy (dominio público, Wikimedia Commons)
+- Música: playlist de Spotify embebida (`4UM1r4r2Yi3ZPt9Qntwnk5`)
 - `public/horoscope.json` — la carta romántica estática
