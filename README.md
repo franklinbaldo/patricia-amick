@@ -21,6 +21,11 @@ npx vite build
 
 El resultado va a `dist/` y se publica automáticamente en GitHub Pages vía `.github/workflows/pages.yml` al hacer push a `main`.
 
+## Deploy en Vercel
+
+1. Importa el repo en https://vercel.com/new — Vercel detecta Vite y usa la configuración de `vercel.json` (`vite build` → `dist/`).
+2. Listo. No hace falta variable de entorno: el sitio es 100% estático.
+
 ## Assets
 
 - `public/photos/01..04-*.jpg` — fotos del casal
