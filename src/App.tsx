@@ -3,13 +3,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import {
   Heart,
   MapPin,
-  Pause,
-  Play,
   Sparkles,
   ChevronLeft,
   ChevronRight,
@@ -161,20 +159,31 @@ const Slideshow = () => {
   );
 };
 
-const MusicVisualizer = ({ isPlaying }: { isPlaying: boolean }) => {
-  return (
-    <div className="flex items-end h-10 gap-1.5 px-2" aria-hidden="true">
-      {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
-        <motion.div
-          key={i}
-          animate={isPlaying ? { height: [12, Math.random() * 28 + 12, 12] } : { height: 4 }}
-          transition={{ repeat: Infinity, duration: 1.2, delay: i * 0.1 }}
-          className="music-bar w-[4px]"
-        />
-      ))}
+const Playlist = () => (
+  <div className="glass-panel p-5 md:p-6 shadow-2xl">
+    <div className="mb-3 flex items-center justify-between">
+      <span className="text-[11px] uppercase tracking-[0.3em] gold-text font-sans font-bold">
+        Nuestra playlist
+      </span>
+      <span className="text-[11px] uppercase tracking-[0.2em] opacity-60 font-sans italic">
+        En Spotify
+      </span>
     </div>
-  );
-};
+    <iframe
+      title="Nuestra playlist en Spotify"
+      src="https://open.spotify.com/embed/playlist/4UM1r4r2Yi3ZPt9Qntwnk5?utm_source=generator&theme=0"
+      width="100%"
+      height={152}
+      frameBorder={0}
+      loading="lazy"
+      allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      className="rounded-[12px]"
+    />
+    <p className="mt-3 text-center text-[11px] uppercase tracking-[0.3em] opacity-70 font-sans italic">
+      Las canciones que nos cuentan
+    </p>
+  </div>
+);
 
 const Memory = () => (
   <div className="glass-panel p-4 md:p-5 shadow-2xl">
@@ -210,8 +219,6 @@ const useElapsed = () => {
 export default function App() {
   const [horoscope, setHoroscope] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   const elapsed = useElapsed();
   const reduceMotion = useReducedMotion();
 
@@ -226,18 +233,6 @@ export default function App() {
       )
       .finally(() => setLoading(false));
   }, []);
-
-  const toggleMusic = () => {
-    const a = audioRef.current;
-    if (!a) return;
-    if (isPlaying) {
-      a.pause();
-      setIsPlaying(false);
-    } else {
-      a.volume = 0.6;
-      a.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
-    }
-  };
 
   return (
     <div className="min-h-screen bg-sky-gradient overflow-x-hidden relative selection:bg-gold/30">
@@ -254,8 +249,6 @@ export default function App() {
           />
         ))}
       </div>
-
-      <audio ref={audioRef} src={`${BASE}audio/clair-de-lune.ogg`} loop preload="none" />
 
       <main className="max-w-7xl mx-auto px-6 md:px-8 py-16 lg:py-24 grid lg:grid-cols-[1.2fr_1fr] gap-16 lg:gap-24 items-center">
         <div className="space-y-16 lg:space-y-24">
@@ -307,23 +300,15 @@ export default function App() {
             <StarMap />
           </motion.div>
 
-          <footer className="flex items-center gap-8 pt-8 border-t border-white/5">
-            <button
-              onClick={toggleMusic}
-              aria-label={isPlaying ? "Pausar música" : "Reproducir música"}
-              className="flex items-center gap-6 group"
-            >
-              <div className="p-4 rounded-full border border-gold/40 gold-text group-hover:bg-gold/10 transition-all duration-300 shadow-[0_0_15px_rgba(212,175,55,0.1)] group-hover:shadow-[0_0_25px_rgba(212,175,55,0.2)]">
-                {isPlaying ? <Pause size={24} /> : <Play size={24} />}
-              </div>
-              <div className="space-y-2 text-left">
-                <MusicVisualizer isPlaying={isPlaying} />
-                <div className="text-[11px] uppercase tracking-[0.2em] gold-text font-sans font-bold">
-                  {isPlaying ? "Sonando: Clair de Lune · Debussy" : "Reproducir Clair de Lune"}
-                </div>
-              </div>
-            </button>
-          </footer>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="pt-8 border-t border-white/5"
+          >
+            <Playlist />
+          </motion.div>
         </div>
 
         <div className="space-y-12 lg:space-y-16 flex flex-col justify-center h-full">
